@@ -19,7 +19,11 @@ export function Post() {
         <p>Fala Galera</p>
         <p>Acabei de subir mais de um projeto no meu portifolio. ẽ um projeto que fiz no NLW Return</p>
         <p> <a href="">Jane.design/doctorcare</a></p>
-        <p><a href="">#novoprojeto #nlw #rocketseat</a></p>
+        <p>
+          <a href="">#novoprojeto</a>{' '}
+          <a href="">#nlw</a>{' '}
+          <a href="">#rocketseat</a>{' '}
+        </p>
       </div>
     </article>
   )

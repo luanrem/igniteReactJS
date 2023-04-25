@@ -14,7 +14,9 @@ export function Comment({ content, onDeleteComment }) {
   }
 
   function handleLikeComment() {
-    setLikeCount(likeCount + 1);
+    setLikeCount((state) => {
+      return state + 1
+    }); // Closure, if I put this way the "state" will always return the last value of likeCount
   }
 
 

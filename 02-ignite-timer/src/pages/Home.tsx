@@ -1,5 +1,5 @@
 // import { Container } from './styles';
 
-export const Home = () => {
-  return <div />
+export function Home() {
+  return <div>Home</div>
 }

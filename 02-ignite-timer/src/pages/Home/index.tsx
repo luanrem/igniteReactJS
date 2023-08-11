@@ -48,12 +48,18 @@ export function Home() {
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
   useEffect(() => {
+    let interval: number
     if (activeCycle) {
-      setInterval(() => {
+      interval = setInterval(() => {
         setAmountSecondsPassed(
           differenceInSeconds(new Date(), activeCycle.startDate),
         )
       }, 1000)
+    }
+
+    return () => {
+      clearInterval(interval)
+      setAmountSecondsPassed(0)
     }
   }, [activeCycle])
 
@@ -83,6 +89,12 @@ export function Home() {
   const seconds = String(secondsAmount).padStart(2, '0')
 
   console.log(activeCycle)
+
+  useEffect(() => {
+    if (activeCycle) {
+      document.title = `${minutes}:${seconds}`
+    }
+  }, [activeCycle, minutes, seconds])
 
   const task = watch('task')
   const isSubmitDisabled = !task

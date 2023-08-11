@@ -15,22 +15,26 @@ import {
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
-  MinutesAmountInput: zod
+  minutesAmount: zod
     .number()
     .min(5, 'O ciclo precisa ser de nominimo 5 minutos')
     .max(60, 'O intervalo precisa ser de no maximo 60 minutos'),
 })
 
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
+
 export function Home() {
-  const { register, handleSubmit, watch, formState } = useForm({
+  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
+    defaultValues: {
+      task: '',
+      minutesAmount: 0,
+    },
   })
 
-  function handleCreateNewCycle(data: any) {
+  function handleCreateNewCycle(data: NewCycleFormData) {
     console.log(data)
   }
-
-  console.log(formState.errors)
 
   const task = watch('task')
   const isSubmitDisabled = !task
